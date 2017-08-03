@@ -26,6 +26,7 @@ let save = (dataFromGithub, callback) => {
     	if (modelInst.length === 0) {
     	console.log('have not searched')
     		inst.save();
+        callback(inst);
     	} else {
     		console.log('searched already');
     		callback(modelInst);

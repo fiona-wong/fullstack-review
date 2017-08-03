@@ -13,6 +13,7 @@ class App extends React.Component {
     //this.search = this.search.bind(this);
   }
 
+
   componentDidMount() {
     $.ajax({
       url: 'http://localhost:1128/repos',
@@ -24,6 +25,7 @@ class App extends React.Component {
         })
       }
     });
+
   }
 
   search (term) {
@@ -31,7 +33,14 @@ class App extends React.Component {
     $.ajax({
       url: 'http://localhost:1128/repos',
       method: 'POST',
-      data: {term}
+      data: {term},
+      success: (data) => {
+        console.log(data)
+        data = JSON.parse(data);
+        this.setState({
+          repos: data
+        })
+      }
     });
 
     // TODO

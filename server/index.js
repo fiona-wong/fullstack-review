@@ -24,7 +24,12 @@ app.post('/repos', function (req, res) {
 	    	views: repo.watchers_count
 	    }
 	    //console.log(userRepo)
-	    saveRepo.save(userRepo);
+	    saveRepo.save(userRepo, () => {
+        saveRepo.save({url: /github/}, model => {
+          res.send(JSON.stringify(model));
+        })
+      });
+      
     })
   });
   // TODO - your code here!
