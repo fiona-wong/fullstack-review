@@ -14,19 +14,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-
     $.ajax({
       url: 'http://localhost:1128/repos',
       method: 'GET',
       success: (data) => {
-        console.log(JSON.parse(data));
         data = JSON.parse(data);
         this.setState({
           repos: data.concat(this.state.repos)
         })
       }
     });
-    
   }
 
   search (term) {
