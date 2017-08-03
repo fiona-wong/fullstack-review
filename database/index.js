@@ -24,7 +24,7 @@ let save = (dataFromGithub, callback) => {
     	if (!modelInst) {
     		inst.save();
     	} else {
-    		console.log(modelInst);
+    		//console.log(modelInst);
     		callback(modelInst);
     	}
     });

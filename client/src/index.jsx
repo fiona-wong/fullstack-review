@@ -13,6 +13,22 @@ class App extends React.Component {
     //this.search = this.search.bind(this);
   }
 
+  componentDidMount() {
+
+    $.ajax({
+      url: 'http://localhost:1128/repos',
+      method: 'GET',
+      success: (data) => {
+        console.log(data);
+        data = JSON.parse(data);
+        this.setState({
+          repos: data.concat(this.state.repos)
+        })
+      }
+    });
+    
+  }
+
   search (term) {
     console.log(`${term} was searched`);
     $.ajax({
@@ -21,17 +37,6 @@ class App extends React.Component {
       data: {term}
     });
 
-    // $.ajax({
-    //   url: 'http://localhost:1128/repos',
-    //   method: 'GET',
-    //   data: {term}
-    //   success: data => {
-    //     this.setState({
-    //       console.log(result);
-    //       repos: result.concat(repos);
-    //     })
-    //   }
-    // });
     // TODO
   }
 

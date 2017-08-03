@@ -35,10 +35,10 @@ app.post('/repos', function (req, res) {
 
 
 app.get('/repos', function (req, res) {
-  // saveRepo.save({url: '/github/'}, model => {
-  // 	//console.log(model);
-  // 	res.send(model);
-  // })
+  saveRepo.save({url: /github/}, model => {
+  	//console.log(model);
+  	res.send(JSON.stringify(model));
+  })
   // Repo.find({username: req.body.term}, (err, modelInst) => {
   //   res.send(modelInst);
   // }
