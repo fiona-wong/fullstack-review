@@ -15,8 +15,7 @@ let repoSchema = mongoose.Schema({
 let Repo = mongoose.model('Repo', repoSchema);
 
 let save = (dataFromGithub, callback) => {
-  //if username doesn't exist
-  //save model
+
   var inst = new Repo(dataFromGithub);
   
   Repo.find(dataFromGithub)
@@ -24,31 +23,13 @@ let save = (dataFromGithub, callback) => {
     .sort({views: -1})
     .then(modelInst => {
     	if (modelInst.length === 0) {
-    	console.log('have not searched')
     		inst.save();
         callback(inst);
     	} else {
-    		console.log('searched already');
     		callback(modelInst);
     	}
     });
-  // 	, (err, modelInst) => {
-  // 	if (modelInst.length === 0) {
-  // 		console.log('bye', modelInst)
-  // 	  inst.save();
-  // 	  if (callback) {
-  // 	    callback(inst);
-  // 	  }
-  // 	} else {
-  //   	console.log('hi', modelInst);
-  //   	if (callback) {
-  //   	  callback(modelInst);
-  //   	}
-  //   }
-  // })
-  // TODO: Your code here
-  // This function should save a repo or repos to
-  // the MongoDB
+
 }
 
 module.exports.save = save;

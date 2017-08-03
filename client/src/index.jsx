@@ -35,7 +35,6 @@ class App extends React.Component {
       method: 'POST',
       data: {term},
       success: (data) => {
-        console.log(data)
         data = JSON.parse(data);
         this.setState({
           repos: data
@@ -43,7 +42,6 @@ class App extends React.Component {
       }
     });
 
-    // TODO
   }
 
   render () {
