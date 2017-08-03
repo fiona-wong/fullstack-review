@@ -10,11 +10,28 @@ class App extends React.Component {
     this.state = { 
       repos: []
     }
-
+    //this.search = this.search.bind(this);
   }
 
   search (term) {
     console.log(`${term} was searched`);
+    $.ajax({
+      url: 'http://localhost:1128/repos',
+      method: 'POST',
+      data: {term}
+    });
+
+    // $.ajax({
+    //   url: 'http://localhost:1128/repos',
+    //   method: 'GET',
+    //   data: {term}
+    //   success: data => {
+    //     this.setState({
+    //       console.log(result);
+    //       repos: result.concat(repos);
+    //     })
+    //   }
+    // });
     // TODO
   }
 
