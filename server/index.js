@@ -20,7 +20,8 @@ app.post('/repos', function (req, res) {
 	    	owner_id: repo.owner.id,
 	    	username: repo.owner.login,
 	    	name: repo.name,
-	    	url: repo.html_url
+	    	url: repo.html_url,
+	    	views: repo.watchers_count
 	    }
 	    //console.log(userRepo)
 	    saveRepo.save(userRepo);

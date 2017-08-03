@@ -2,13 +2,15 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/fetcher');
 
 let repoSchema = mongoose.Schema({
-	id: Number, //id number for the repo
+	id: {type: Number, unique: true, dropDups: true}, //id number for the repo
 	owner_id: Number, //username id from github
 	username: String, //username from github owner.login
-	name: String,
-	url: String //html_url in the results object
- 
+	name: String, //name from github
+	url: String, //html_url in the results object
+  views: Number
 });
+
+
 
 let Repo = mongoose.model('Repo', repoSchema);
 
@@ -19,12 +21,13 @@ let save = (dataFromGithub, callback) => {
   
   Repo.find(dataFromGithub)
     .limit(25)
-    .sort({name: -1})
+    .sort({views: -1})
     .then(modelInst => {
-    	if (!modelInst) {
+    	if (modelInst.length === 0) {
+    	console.log('have not searched')
     		inst.save();
     	} else {
-    		//console.log(modelInst);
+    		console.log('searched already');
     		callback(modelInst);
     	}
     });
